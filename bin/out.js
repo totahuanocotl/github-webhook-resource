@@ -88,7 +88,7 @@ async function processWebhook(source, params) {
     const config = {
         'url': url,
         'content_type': params.payload_content_type ? params.payload_content_type : 'json',
-        'secret': params.payload_secret
+        ...(params.payload_secret && {'secret': params.payload_secret}),
     };
 
     const body = {
